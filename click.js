@@ -13,3 +13,4 @@ $('.simon-button.yellow').on('click', function() {
 $('.simon-button.red').on('click', function() {
   alert('You clicked the red button');
 });
+

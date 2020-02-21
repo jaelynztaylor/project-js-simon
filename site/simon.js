@@ -1,46 +1,33 @@
-let buttons = console.require("./buttons");
-let begin = false;
+/*
 
-function start() {
-begin = true;
-let highlightColors = ["green","red","yellow","blue"];
-let currentColor = "";
-let userColor;
-}
+Nouns:
+  - Color
+  - Button
+  - Board / the machine
+  - Game
+  - Move
+  - Round
 
-let moves = [1,1,3];
+Verbs:
+  - Press
+  -
+*/
 
-function greenHighlight() {
-  $('.simon-button.green').*transform*
-}
+// let currentChallenge = newChallenge();
+let currentChallenge = ['red', 'blue', 'yellow', 'red', 'green'];
+let currentStep = 4;
 
+let move = 'green';
 
-function userClick() {
-  $('.simon-button').on('click', function() {
-      if *click* on *color*
-      {
-        userColor = color;
-      }
+if (moveIsCorrect(currentChallenge, currentStep, move)) {
+  currentStep += 1;
+
+  if (roundIsDone(currentChallenge, currentStep)) {
+    let randomColor = getRandomColor();
+    currentStep = 0;
+
+    currentChallenge.push(randomColor);
   }
-}
-
-function simon() {
-
-}
-
-function startingMove(begin) {
-  if (begin === true) {
-    greenHighlight();
-    currentColor = highlightColors[0];
-    if (currentColor === "green")
-    {
-      userClick();
-      if (userColor = currentColor) {
-        simon();
-      }
-      else {
-        *GAME OVER*
-      }
-    }
-  }
+} else {
+  // game over;
 }

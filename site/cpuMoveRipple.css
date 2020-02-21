@@ -1,79 +1,5 @@
-*{
-  box-sizing: border-box;
-}
-html {
-  background-color: #FCFCFC;
-  font-family: Arial;
-  font-size: 18px;
-}
-#content {
-  width: 800px;
-  margin: 0 auto;
-}
-#content h1 {
-  font-size: 3rem;
-  text-align: center;
-}
-.simon-container {
-  margin: 20px auto;
-  width:400px;
-  height:400px;
-  background-color:#fff;
-  display:grid;
-  grid-template-columns: 200px 200px;
-  grid-row: auto auto;
-  grid-column-gap: 20px;
-  grid-row-gap: 20px;
-}
-.simon-container .simon-button {
-  align-items: center;
-  background-color: #333;
-  border-radius: 10px;
-  color: #fff;
-  padding: 20px;
-  justify-content: center;
-  font-size: 40px;
-  font-family: sans-serif;
-}
-.simon-button.green {
-  background-color: darkgreen;
-}
-.simon-button.red {
-  background-color: darkred;
-}
-.simon-button.yellow {
-  background-color: gold;
-}
-.simon-button.blue {
-  background-color: darkblue;
-}
-div.simon-button.green:hover {
-  /* border: 5px solid green; */
-  background-color: rgb(0, 184, 0);
-  transform: scale(1.1);
-  cursor:pointer;
-}
-div.simon-button.red:hover {
-  /* border: 5px solid red; */
-  background-color: red;
-  transform: scale(1.1);
-  cursor: pointer;
-}
-div.simon-button.yellow:hover {
-  /* border: 5px solid yellow; */
-  background-color: yellow;
-  transform: scale(1.1);
-  cursor: pointer;
-}
-div.simon-button.blue:hover {
-  /* border: 5px solid blue; */
-  background-color: blue;
-  transform: scale(1.1);
-  cursor: pointer;
-}
-/*Ripple Effect for each button*/
-
-div.simon-button.green {
+/*Ripple Effect Classes for Computer Moves*/
+div.simon-button.green.cpu{
   position: relative;
   background-color: darkgreen;
   border: none;
@@ -88,7 +14,7 @@ div.simon-button.green {
   overflow: hidden;
   cursor: pointer;
 }
-div.simon-button.green:after {
+div.simon-button.green.cpu:after {
   content: "";
   background: #90EE90;
   display: block;
@@ -100,13 +26,13 @@ div.simon-button.green:after {
   opacity: 0;
   transition: all 0.8s
 }
-div.simon-button.green:active:after {
+div.simon-button.green.cpu:active:after {
   padding: 0;
   margin: 0;
   opacity: 1;
   transition: 0s
 }
-div.simon-button.red {
+div.simon-button.red.cpu{
   position: relative;
   background-color: darkred;
   border: none;
@@ -121,7 +47,7 @@ div.simon-button.red {
   overflow: hidden;
   cursor: pointer;
 }
-div.simon-button.red:after {
+div.simon-button.red.cpu:after {
   content: "";
   background: rgb(238, 144, 144);
   display: block;
@@ -133,13 +59,13 @@ div.simon-button.red:after {
   opacity: 0;
   transition: all 0.8s
 }
-div.simon-button.red:active:after {
-  padding: 0;
-  margin: 0;
-  opacity: 1;
-  transition: 0s
+div.simon-button.red.cpu:active:after {
+    padding: 0;
+    margin: 0;
+    opacity: 1;
+    transition: 0s
 }
-div.simon-button.yellow {
+div.simon-button.yellow.cpu{
   position: relative;
   background-color: gold;
   border: none;
@@ -154,7 +80,7 @@ div.simon-button.yellow {
   overflow: hidden;
   cursor: pointer;
 }
-div.simon-button.yellow:after {
+div.simon-button.yellow.cpu:after {
   content: "";
   background: rgb(238, 236, 144);
   display: block;
@@ -166,13 +92,13 @@ div.simon-button.yellow:after {
   opacity: 0;
   transition: all 0.8s
 }
-div.simon-button.yellow:active:after {
+div.simon-button.yellow.cpu:active:after {
   padding: 0;
   margin: 0;
   opacity: 1;
   transition: 0s
 }
-div.simon-button.blue {
+div.simon-button.blue.cpu {
   position: relative;
   background-color: darkblue;
   border: none;
@@ -187,7 +113,7 @@ div.simon-button.blue {
   overflow: hidden;
   cursor: pointer;
 }
-div.simon-button.blue:after {
+div.simon-button.blue.cpu:after {
   content: "";
   background: rgb(144, 161, 238);
   display: block;
@@ -199,14 +125,9 @@ div.simon-button.blue:after {
   opacity: 0;
   transition: all 0.8s
 }
-div.simon-button.blue:active:after {
+div.simon-button.blue.cpu:active:after {
   padding: 0;
   margin: 0;
   opacity: 1;
   transition: 0s
-}
-  /*border: 5px solid blue;*/
-
-.waffles {
-  background-color: purple;
 }

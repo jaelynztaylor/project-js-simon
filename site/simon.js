@@ -16,15 +16,17 @@ Verbs:
 // let currentSequence = newChallenge();
 let randomColors = ['green', 'red', 'yellow', 'blue'];
 
-let currentSequence = ['green', 'green', 'green', 'green', 'green'];
-let currentStep = 4;
+//let currentSequence = ['green', 'green', 'green', 'green', 'green'];
+// let currentStep = 4;
 
-let move = 'green';
+// let move = 'green';
 
-function startGame(){
+// function startGame(){
 
-}
+// }
 
+
+let currentSequence = []
 function getRandomColor(){
   return randomColors[Math.floor(Math.random()*randomColors.length)];
 }
@@ -33,43 +35,44 @@ function computerMove(){
   currentSequence.push(getRandomColor());
 
 }
+function raiseOpacity(element){
+  $(`.simon-button.${element}`).animate({
+    opacity: 100
+  });
+}
+
+function lowerOpacity(element){
+  $(`.simon-button.${element}`).animate({
+    opacity: .25
+  });
+}
+
+function manipulateBrowser(currentSequence){
+  console.log(currentSequence.length)  
+  if(currentSequence.length === 0){
+      return;
+    }
+    let nextColor = currentSequence.shift();
+    //lowerOpacity(nextColor);
+    $(`.simon-button.${nextColor}`).animate({
+      opacity: 0
+    }),1000,
+    $(`.simon-button.${nextColor}`).animate({
+      opacity: 100
+    });
+    setTimeout(() => {
+      manipulateBrowser(currentSequence);},
+      1000);
+  }
 
 function playerMove(){
+
   //start clicking pattern
 }
 
-function output(currentSequence){
-  for(let element of currentSequence){
-    if(element === "green"){
-      $('.simon-button.green.cpu').css({
-        'background-color': 'rgb(0, 184, 0)',
-        'transform': 'scale(1.1)'
-      });
-      $('.simon-button.green:after').css({
-        'content': "",
-        'background': '#90EE90',
-        'display': block,
-        'position': absolute,
-        'padding-top': '300%',
-        'padding-left': '350%',
-        'margin-left': '-20px!important',
-        'margin-top': '-120%',
-        'opacity': '0',
-        'transition': 'all 0.8s'
-      });
-      $('.simon-button.green:active:after').css({
-        'padding': '0',
-        'margin': '0',
-        'opacity': '1',
-        'transition': '0s'
-      });
-    }
-  }}
 
-
-
-function moveIsCorrect(){
-
+function moveIsCorrect(currentSequence, currentStep, move){
+  if( /*playerSequence[currentStep]*/ === currentSequence[currentStep])
 }
 
 function roundIsDone(){
@@ -80,15 +83,24 @@ function play(){
   if (moveIsCorrect(currentSequence, currentStep, move)) {
    currentStep += 1;
 
-   if (roundIsDone(currentSequence, currentStep)) {
-     let randomColor = getRandomColor();
-     currentStep = 0;
-
-     currentSequence.push(randomColor);
+   if(!moveIsCorrect(currentSequence, currentStep, move)) {
+     //game over
    }
-  } else {
-   // game over;
+
+   if (roundIsDone(currentSequence, currentStep)) {
+     currentStep = 0;
+     computerMove();
+     manipulateBrowswer(currentSequence);
+     playerMove();
+     play();
+   }
+  } else { 
+    playerMove(); }
+   
  }
 }
+ 
+//computerMove();
+console.log(currentSequence)
+manipulateBrowser(currentSequence);
 
-output();

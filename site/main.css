@@ -2,7 +2,7 @@
   box-sizing: border-box;
 }
 html {
-  background-color: black;
+  background-color: #FCFCFC;
   font-family: Arial;
   font-size: 18px;
 }
@@ -19,7 +19,7 @@ html {
   margin: 20px auto;
   width:400px;
   height:400px;
-  background-color:black;
+  /* background-color:black; */
   display:grid;
   grid-template-columns: 200px 200px;
   grid-row: auto auto;
@@ -48,30 +48,34 @@ html {
 .simon-button.blue {
   background-color: darkblue;
 }
-div.simon-button.green:hover {
-  /* border: 5px solid green; */
-  background-color: rgb(0, 184, 0);
-  transform: scale(1.1);
+
+.simon-button:hover {
+  /* transform: scale(1.1); */
   cursor:pointer;
 }
+/*
+.simon-button.green:hover {
+  border: 5px solid green;
+  background-color: rgb(0, 184, 0);
+}
 div.simon-button.red:hover {
-  /* border: 5px solid red; */
+  border: 5px solid red;
   background-color: red;
   transform: scale(1.1);
   cursor: pointer;
 }
 div.simon-button.yellow:hover {
-  /* border: 5px solid yellow; */
+  border: 5px solid yellow;
   background-color: yellow;
   transform: scale(1.1);
   cursor: pointer;
 }
 div.simon-button.blue:hover {
-  /* border: 5px solid blue; */
+  border: 5px solid blue;
   background-color: blue;
   transform: scale(1.1);
   cursor: pointer;
-}
+} */
 /*Ripple Effect for each button*/
 
 div.simon-button.green {

@@ -1,5 +1,6 @@
 let randomColors = ['green', 'red', 'yellow', 'blue'];
 let currentSequence = [];
+let currentSequenceCopy = [];
 let playerSequence = [];
 let currentStep = 0;
 
@@ -21,11 +22,14 @@ function computerMove(){
 }
 
 function manipulateBrowser(){
-  console.log(currentSequence.length)
-  if(currentSequence.length === 0){
-      return;
-  }
+  console.log("currentSequence length is: " + currentSequence.length)
+  // if(currentSequence.length === 0){
+  //     return;
+  // }
+
   let nextColor = currentSequence.shift();
+  currentSequenceCopy.push(nextColor);
+  console.log("currentSequenceCopy length is: " + currentSequenceCopy.length);
   $(`div.simon-button.${nextColor}`).animate({
   opacity: 0
   }),1000,
@@ -49,15 +53,15 @@ function endGame(){
 
 
 function moveIsCorrect(){
-  if( playerSequence[currentStep] === currentSequence[currentStep]){
+  if( playerSequence[currentStep-1] === currentSequenceCopy[currentStep-1]){
     return true;
-  } else {
+  } else if(playerSequence[currentStep-1] !== currentSequenceCopy[currentStep-1]) {
     return false;
   }
 }
 
 function roundIsDone(){
-  if(currentSequence[currentSequence.length-1] === playerSequence[playerSequence.length -1]){
+  if(currentSequenceCopy[currentSequenceCopy.length-1] === playerSequence[playerSequence.length -1]){
     return true;
   }
   return false;
@@ -84,7 +88,7 @@ function playerInput(){
 
 
 function play(playerSequence){
-  if(moveIsCorrect()) {
+  if(moveIsCorrect() === true) {
    currentStep += 1;
    console.log(moveIsCorrect());
    console.log(currentStep);
@@ -96,14 +100,13 @@ function play(playerSequence){
 
    if (roundIsDone()){
      currentStep = 0;
-     //computerMove();
-     //manipulateBrowser();
+     computerMove();
+     manipulateBrowser();
      playerInput();
-     //play(playerSequence);
+     play(playerSequence);
    } else {
-    //playerInput();
+    playerInput();
   }
 }
 
-console.log(currentSequence)
 startGame();

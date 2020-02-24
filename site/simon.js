@@ -4,7 +4,7 @@ let currentSequenceCopy = [];
 let playerSequence = [];
 let currentStep = 0;
 
-//let currentSequence = ['green', 'green', 'green', 'green', 'green'];
+// let currentSequence = ['green', 'green', 'green', 'green', 'green'];
 // let currentStep = 4;
 
 // let move = 'green';
@@ -13,61 +13,61 @@ let currentStep = 0;
 
 // }
 
-function getRandomColor(){
-  return randomColors[Math.floor(Math.random()*randomColors.length)];
+function getRandomColor() {
+  return randomColors[Math.floor(Math.random() * randomColors.length)];
 }
 
-function computerMove(){
+function computerMove() {
   currentSequence.push(getRandomColor());
 }
 
-function manipulateBrowser(){
-  console.log("currentSequence length is: " + currentSequence.length)
+function manipulateBrowser() {
+  console.log('currentSequence length is: ' + currentSequence.length);
   // if(currentSequence.length === 0){
   //     return;
   // }
 
   let nextColor = currentSequence.shift();
   currentSequenceCopy.push(nextColor);
-  console.log("currentSequenceCopy length is: " + currentSequenceCopy.length);
+  console.log('currentSequenceCopy length is: ' + currentSequenceCopy.length);
   $(`div.simon-button.${nextColor}`).animate({
-  opacity: 0
-  }),1000,
+    opacity: 0,
+  }), 1000,
   $(`div.simon-button.${nextColor}`).animate({
-    opacity: 100
+    opacity: 100,
   });
   setTimeout(() => {
-    manipulateBrowser();},
-    1000);
+    manipulateBrowser();
+  },
+  1000);
 }
 
-function startGame(){
+function startGame() {
   computerMove();
   manipulateBrowser();
   play(playerSequence);
 }
 
-function endGame(){
-  alert(`You done fucked up.`);
+function endGame() {
+  alert('You done fucked up.');
 }
 
-
-function moveIsCorrect(){
-  if( playerSequence[currentStep-1] === currentSequenceCopy[currentStep-1]){
+function moveIsCorrect() {
+  if (playerSequence[currentStep - 1] === currentSequenceCopy[currentStep - 1]) {
     return true;
-  } else if(playerSequence[currentStep-1] !== currentSequenceCopy[currentStep-1]) {
+  } else if (playerSequence[currentStep - 1] !== currentSequenceCopy[currentStep - 1]) {
     return false;
   }
 }
 
-function roundIsDone(){
-  if(currentSequenceCopy[currentSequenceCopy.length-1] === playerSequence[playerSequence.length -1]){
+function roundIsDone() {
+  if (currentSequenceCopy[currentSequenceCopy.length - 1] === playerSequence[playerSequence.length - 1]) {
     return true;
   }
   return false;
 }
 
-function playerInput(){
+function playerInput() {
   $('.simon-button.green').on('click', function() {
     playerSequence.push('green');
     console.log(`playerSequence is now ${playerSequence}`);
@@ -86,25 +86,24 @@ function playerInput(){
   });
 }
 
-
-function play(playerSequence){
-  if(moveIsCorrect() === true) {
-   currentStep += 1;
-   console.log(moveIsCorrect());
-   console.log(currentStep);
+function play(playerSequence) {
+  if (moveIsCorrect() === true) {
+    currentStep += 1;
+    console.log(moveIsCorrect());
+    console.log(currentStep);
   }
 
-   if(!moveIsCorrect()) {
-     endGame();
-   }
+  if (!moveIsCorrect()) {
+    endGame();
+  }
 
-   if (roundIsDone()){
-     currentStep = 0;
-     computerMove();
-     manipulateBrowser();
-     playerInput();
-     play(playerSequence);
-   } else {
+  if (roundIsDone()) {
+    currentStep = 0;
+    computerMove();
+    manipulateBrowser();
+    playerInput();
+    play(playerSequence);
+  } else {
     playerInput();
   }
 }
